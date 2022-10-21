@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://fonts/xolonium-regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scenes/MainMenu.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 27
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Button
+
+"
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.619608, 0.54902, 0.4, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_top = 70.0
+margin_right = 1024.0
+margin_bottom = 148.0
+custom_fonts/font = SubResource( 1 )
+text = "ROADS"
+align = 1
+autowrap = true
+
+[node name="Label2" type="Label" parent="."]
+margin_top = 140.0
+margin_right = 1024.0
+margin_bottom = 218.0
+custom_fonts/font = SubResource( 4 )
+text = "by Luan"
+align = 1
+autowrap = true
+
+[node name="PlayButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -91.0
+margin_top = -60.0
+margin_right = 92.0
+margin_bottom = -15.0
+custom_fonts/font = SubResource( 2 )
+text = "Play"
+script = SubResource( 3 )
+
+[node name="QuitButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -91.0
+margin_top = 20.0
+margin_right = 92.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 2 )
+text = "Quit"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]

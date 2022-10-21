@@ -1,0 +1,99 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://actors/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://actors/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/MainScene.gd" type="Script" id=3]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sprites/roads/top.png" type="Texture" id=5]
+[ext_resource path="res://sprites/roads/bottom.png" type="Texture" id=6]
+[ext_resource path="res://sprites/roads/mid.png" type="Texture" id=7]
+[ext_resource path="res://sounds/theme.wav" type="AudioStream" id=8]
+[ext_resource path="res://sounds/explosion.mp3" type="AudioStream" id=9]
+[ext_resource path="res://actors/Explosion.tscn" type="PackedScene" id=10]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource( 3 )
+enemy = ExtResource( 1 )
+explosion = ExtResource( 10 )
+
+[node name="HUD" parent="." instance=ExtResource( 4 )]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 86, 123 )
+
+[node name="Position1" type="Position2D" parent="."]
+position = Vector2( 110, 120 )
+
+[node name="Position2" type="Position2D" parent="."]
+position = Vector2( 110, 280 )
+
+[node name="Position3" type="Position2D" parent="."]
+position = Vector2( 110, 440 )
+
+[node name="CarTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="ScoreTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="RoadTop1" type="Sprite" parent="."]
+position = Vector2( 150, 140 )
+texture = ExtResource( 5 )
+
+[node name="RoadMid1" type="Sprite" parent="."]
+position = Vector2( 150, 300 )
+texture = ExtResource( 7 )
+
+[node name="RoadBot1" type="Sprite" parent="."]
+position = Vector2( 150, 460 )
+texture = ExtResource( 6 )
+
+[node name="RoadTop2" type="Sprite" parent="."]
+position = Vector2( 510, 140 )
+texture = ExtResource( 5 )
+
+[node name="RoadMid2" type="Sprite" parent="."]
+position = Vector2( 510, 300 )
+texture = ExtResource( 7 )
+
+[node name="RoadBot2" type="Sprite" parent="."]
+position = Vector2( 510, 460 )
+texture = ExtResource( 6 )
+
+[node name="RoadTop3" type="Sprite" parent="."]
+position = Vector2( 870, 140 )
+texture = ExtResource( 5 )
+
+[node name="RoadMid3" type="Sprite" parent="."]
+position = Vector2( 870, 300 )
+texture = ExtResource( 7 )
+
+[node name="RoadBot3" type="Sprite" parent="."]
+position = Vector2( 870, 460 )
+texture = ExtResource( 6 )
+
+[node name="Gutter" type="ColorRect" parent="."]
+margin_left = -20.0
+margin_right = 1060.0
+margin_bottom = 60.0
+color = Color( 0.584314, 0.584314, 0.584314, 1 )
+
+[node name="Gutter2" type="ColorRect" parent="."]
+margin_left = -20.0
+margin_top = 540.0
+margin_right = 1060.0
+margin_bottom = 600.0
+color = Color( 0.584314, 0.584314, 0.584314, 1 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -13.0
+
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -10.0
+
+[connection signal="reset_game" from="HUD" to="." method="reset_game"]
+[connection signal="death" from="Player" to="." method="player_death"]
+[connection signal="timeout" from="CarTimer" to="." method="_on_CarTimer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
