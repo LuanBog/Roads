@@ -29,6 +29,9 @@ func _process(delta):
 		
 	position_index = clamp(position_index, 1, 3)
 		
+func shake_screen():
+	pass	
+	
 func key_pressed():
 	var position_chosen = get_node("Position" + str(position_index))
 		
@@ -63,6 +66,8 @@ func player_death(final_position):
 	
 	$Music.stop()
 	$Explosion.play()
+	
+	Globals.camera.shake(500, 0.7, 500)
 	
 	$ScoreTimer.stop()
 	
